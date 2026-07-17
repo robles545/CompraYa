@@ -102,28 +102,27 @@
         @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; display: none; } }
     </style>
 </head>
-<body class="antialiased pb-20 md:pb-0 pt-16 bg-[#0B0D10] text-[#F3F4F6]">
+<body class="antialiased pb-20 pt-16 bg-black text-[#F3F4F6]">
 
     <!-- Toast Notifications Container -->
-    <div id="toast-container"></div>
+    <div id="toast-container" class="max-w-md mx-auto left-0 right-0"></div>
 
-    <nav class="fixed top-0 w-full bg-white/90 backdrop-blur-md shadow-sm z-50 border-b border-gray-100">
-        <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
+    <nav class="fixed top-0 left-0 right-0 w-full max-w-md mx-auto bg-[#181C23]/95 backdrop-blur-md shadow-sm z-50 border-b border-[#292E38]">
+        <div class="px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2 cursor-pointer" onclick="app.navigate('home')">
                 <i class="ph ph-shopping-bag text-3xl text-agora-green"></i>
                 <span class="text-xl font-bold tracking-tight text-agora-green">¡CompraYa!</span>
             </div>
             
             <!-- Desktop Nav / Role Switcher (For Demo purposes) -->
-            <div class="flex items-center gap-4">
-                <!-- Demo Role Switcher -->
-                <div class="hidden md:flex items-center gap-2 text-sm">
-                    <span class="text-gray-500">Simular Rol:</span>
-                    <select id="demo-role-select" class="bg-gray-50 border border-gray-200 rounded px-2 py-1 outline-none focus:border-agora-green" onchange="app.switchRole(this.value)">
+            <div class="flex items-center gap-2">
+                <!-- Demo Role Switcher (Compacted for mobile) -->
+                <div class="flex items-center text-xs">
+                    <select id="demo-role-select" class="bg-[#292E38] text-white border border-[#353B47] rounded px-2 py-1 outline-none focus:border-agora-green" onchange="app.switchRole(this.value)">
                         <option value="guest">Invitado</option>
-                        <option value="buyer">Comprador (Mía)</option>
-                        <option value="seller">Emprendedor (Selva Dulce)</option>
-                        <option value="admin">Administrador</option>
+                        <option value="buyer">Mía (Compra)</option>
+                        <option value="seller">Carlos (Vende)</option>
+                        <option value="admin">Admin</option>
                     </select>
                 </div>
                 
@@ -134,7 +133,7 @@
         </div>
     </nav>
 
-    <main id="main-content" class="max-w-5xl mx-auto px-4 w-full">
+    <main id="main-content" class="max-w-md mx-auto px-4 w-full bg-[#0B0D10] min-h-screen shadow-2xl overflow-x-hidden">
         
         <!-- ================= VIEWS ================= -->
 
@@ -201,7 +200,7 @@
                     <h2 class="text-xl font-bold">Catálogos actualizados hoy</h2>
                     <span class="text-sm text-agora-green font-medium cursor-pointer hover:underline" onclick="app.navigate('search')">Ver todos</span>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="home-highlights">
+                <div class="grid grid-cols-2 gap-3" id="home-highlights">
                     <!-- Injected via JS -->
                 </div>
             </div>
@@ -209,7 +208,7 @@
             <!-- Best Rated Services -->
             <div class="mb-10">
                 <h2 class="text-xl font-bold mb-4">Servicios mejor valorados</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="home-services">
+                <div class="grid grid-cols-1 gap-4" id="home-services">
                     <!-- Injected via JS -->
                 </div>
             </div>
@@ -224,13 +223,13 @@
             
             <!-- Filters Toggle -->
             <div class="flex gap-2 mb-6 overflow-x-auto hide-scrollbar">
-                <button class="bg-agora-green text-white px-4 py-1.5 rounded-full text-sm whitespace-nowrap"><i class="ph ph-faders mr-1"></i> Filtros</button>
-                <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full text-sm whitespace-nowrap" onclick="app.filterSearch('type', 'product')">Productos</button>
-                <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full text-sm whitespace-nowrap" onclick="app.filterSearch('type', 'service')">Servicios</button>
-                <button class="bg-white border border-gray-200 text-gray-600 px-4 py-1.5 rounded-full text-sm whitespace-nowrap">Modalidad <i class="ph ph-caret-down"></i></button>
+                <button class="bg-agora-green text-[#181C23] px-4 py-1.5 rounded-full text-sm font-bold whitespace-nowrap"><i class="ph ph-faders mr-1"></i> Filtros</button>
+                <button class="bg-[#181C23] border border-[#353B47] text-gray-300 px-4 py-1.5 rounded-full text-sm whitespace-nowrap" onclick="app.filterSearch('type', 'product')">Productos</button>
+                <button class="bg-[#181C23] border border-[#353B47] text-gray-300 px-4 py-1.5 rounded-full text-sm whitespace-nowrap" onclick="app.filterSearch('type', 'service')">Servicios</button>
+                <button class="bg-[#181C23] border border-[#353B47] text-gray-300 px-4 py-1.5 rounded-full text-sm whitespace-nowrap">Modalidad <i class="ph ph-caret-down"></i></button>
             </div>
 
-            <div id="search-results-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div id="search-results-container" class="grid grid-cols-2 gap-3">
                 <!-- Results Injected Here -->
             </div>
             <div id="search-empty-state" class="hidden text-center py-10">
@@ -257,13 +256,13 @@
              </div>
              
              <!-- Tabs -->
-             <div class="flex border-b border-gray-200 bg-white shadow-sm mb-6 sticky top-16 z-40">
+             <div class="flex border-b border-[#292E38] bg-[#181C23] shadow-sm mb-6 sticky top-16 z-40">
                  <button class="flex-1 py-3 text-center font-bold text-agora-green border-b-2 border-agora-green">Catálogo</button>
                  <button class="flex-1 py-3 text-center font-medium text-gray-500">Reseñas</button>
                  <button class="flex-1 py-3 text-center font-medium text-gray-500">Información</button>
              </div>
 
-             <div id="business-catalog" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+             <div id="business-catalog" class="grid grid-cols-2 gap-3">
                  <!-- Items injected here -->
              </div>
         </section>
@@ -290,24 +289,24 @@
             </div>
 
             <!-- Metrics -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-50">
-                    <p class="text-sm text-gray-500 mb-1">Solicitudes Nuevas</p>
-                    <p class="text-2xl font-bold text-agora-dark" id="metric-reqs">0</p>
+            <div class="grid grid-cols-2 gap-3 mb-8">
+                <div class="bg-[#181C23] p-4 rounded-xl shadow-sm border border-[#292E38]">
+                    <p class="text-xs text-gray-400 mb-1">Solicitudes Nuevas</p>
+                    <p class="text-xl font-bold text-white" id="metric-reqs">0</p>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-50">
-                    <p class="text-sm text-gray-500 mb-1">Interacciones</p>
-                    <p class="text-2xl font-bold text-agora-dark" id="metric-completed">0</p>
+                <div class="bg-[#181C23] p-4 rounded-xl shadow-sm border border-[#292E38]">
+                    <p class="text-xs text-gray-400 mb-1">Interacciones</p>
+                    <p class="text-xl font-bold text-white" id="metric-completed">0</p>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-50">
-                    <p class="text-sm text-gray-500 mb-1">Calificación</p>
-                    <div class="flex items-center gap-1 text-agora-orange font-bold text-2xl">
-                        <i class="ph-fill ph-star text-xl"></i> <span id="metric-rating">0.0</span>
+                <div class="bg-[#181C23] p-4 rounded-xl shadow-sm border border-[#292E38]">
+                    <p class="text-xs text-gray-400 mb-1">Calificación</p>
+                    <div class="flex items-center gap-1 text-agora-orange font-bold text-xl">
+                        <i class="ph-fill ph-star"></i> <span id="metric-rating">0.0</span>
                     </div>
                 </div>
-                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-50">
-                    <p class="text-sm text-gray-500 mb-1">Vistas del mes</p>
-                    <p class="text-2xl font-bold text-agora-dark">128 <i class="ph ph-trend-up text-sm text-agora-green ml-1"></i></p>
+                <div class="bg-[#181C23] p-4 rounded-xl shadow-sm border border-[#292E38]">
+                    <p class="text-xs text-gray-400 mb-1">Vistas (mes)</p>
+                    <p class="text-xl font-bold text-white">128 <i class="ph ph-trend-up text-xs text-agora-green ml-1"></i></p>
                 </div>
             </div>
 
@@ -327,8 +326,8 @@
 
     </main>
 
-    <!-- Mobile Bottom Nav -->
-    <nav class="md:hidden fixed bottom-0 w-full bg-white border-t border-gray-200 pb-safe z-50">
+    <!-- Mobile Bottom Nav (Constrained width for App feel) -->
+    <nav class="fixed bottom-0 left-0 right-0 max-w-md mx-auto w-full bg-[#181C23]/95 backdrop-blur-md border-t border-[#292E38] pb-safe z-50">
         <div id="mobile-nav-items" class="flex justify-around items-center h-16">
             <!-- Injected via JS based on role -->
         </div>
@@ -337,11 +336,11 @@
     <!-- ================= MODALS ================= -->
 
     <!-- Modal: Request Product/Service -->
-    <div id="modal-request" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden flex justify-center items-end md:items-center">
-        <div class="bg-white w-full md:w-[500px] rounded-t-2xl md:rounded-2xl max-h-[90vh] overflow-y-auto transform transition-transform translate-y-full md:translate-y-0" id="modal-request-content">
-            <div class="sticky top-0 bg-white p-4 border-b border-gray-100 flex justify-between items-center z-10">
-                <h3 class="font-bold text-lg">Nueva Solicitud</h3>
-                <button onclick="app.hideModal('modal-request')" class="p-1 rounded-full bg-gray-100 text-gray-600"><i class="ph ph-x"></i></button>
+    <div id="modal-request" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100] hidden flex justify-center items-end sm:items-center">
+        <div class="bg-[#181C23] w-full max-w-md rounded-t-2xl sm:rounded-2xl max-h-[90vh] overflow-y-auto transform transition-transform translate-y-full sm:translate-y-0" id="modal-request-content">
+            <div class="sticky top-0 bg-[#181C23] p-4 border-b border-[#292E38] flex justify-between items-center z-10">
+                <h3 class="font-bold text-lg text-white">Nueva Solicitud</h3>
+                <button onclick="app.hideModal('modal-request')" class="p-1 rounded-full bg-[#292E38] text-gray-400"><i class="ph ph-x"></i></button>
             </div>
             <div class="p-4" id="modal-request-body">
                 <!-- Content generated dynamically -->
